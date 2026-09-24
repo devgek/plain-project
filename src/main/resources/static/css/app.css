@@ -1,0 +1,11 @@
+/* Ergänzungen zu Bootstrap. Farben nur über Bootstrap-Variablen, damit der Dark Mode greift. */
+
+.note-item-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#content {
+    resize: vertical;
+}

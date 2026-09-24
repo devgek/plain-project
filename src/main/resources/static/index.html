@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notes</title>
+    <!-- Vor dem ersten Rendern, damit der Dark Mode nicht aufblitzt -->
+    <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="webjars/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
+<nav class="navbar border-bottom mb-4">
+    <div class="container">
+        <span class="navbar-brand">Notes</span>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="row g-4">
+        <section class="col-md-5" aria-labelledby="list-heading">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 id="list-heading" class="h5 mb-0">Alle Notes</h2>
+                <button type="button" class="btn btn-primary btn-sm" id="new-note">Neue Note</button>
+            </div>
+            <div class="list-group" id="note-list"></div>
+            <p class="text-body-secondary mt-3 d-none" id="empty-list">Noch keine Notes vorhanden.</p>
+            <nav class="d-flex justify-content-between align-items-center mt-3 d-none" id="pager" aria-label="Seiten">
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="prev-page">Zurück</button>
+                <span class="small text-body-secondary" id="page-info"></span>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="next-page">Weiter</button>
+            </nav>
+        </section>
+
+        <section class="col-md-7" aria-labelledby="form-heading">
+            <div class="card">
+                <div class="card-body">
+                    <h2 id="form-heading" class="h5 card-title mb-3">Neue Note</h2>
+
+                    <div class="alert alert-warning d-none" id="conflict" role="alert">
+                        Diese Note wurde inzwischen geändert.
+                        <button type="button" class="btn btn-sm btn-warning ms-2" id="reload-note">
+                            Neu laden (eigene Änderungen verwerfen)
+                        </button>
+                    </div>
+
+                    <form id="note-form" novalidate>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Titel</label>
+                            <input type="text" class="form-control" id="title" name="title" maxlength="200" required>
+                            <div class="invalid-feedback" data-error-for="title"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Inhalt</label>
+                            <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+                            <div class="invalid-feedback" data-error-for="content"></div>
+                        </div>
+                        <p class="small text-body-secondary d-none" id="timestamps"></p>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary" id="save">Speichern</button>
+                            <button type="button" class="btn btn-outline-danger ms-auto d-none" id="delete">Löschen</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h5" id="delete-modal-title">Note löschen?</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+            </div>
+            <div class="modal-body">
+                „<span id="delete-modal-note"></span>“ wird endgültig gelöscht und kann nicht wiederhergestellt werden.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete">Löschen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toasts"></div>
+</body>
+</html>

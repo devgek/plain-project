@@ -1,0 +1,15 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/shelf/
+.idea/dataSources*
+*.iml
+out/
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
