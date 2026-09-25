@@ -56,6 +56,11 @@ mitgeschickt werden, sonst antwortet die API mit 409 Conflict.
 
 ## Template für ein neues Projekt verwenden
 
+In Claude Code mit `/gek-plain <artifactId> [groupId] [Elternverzeichnis]` (Skill unter `~/.claude/skills/gek-plain/`).
+Der Skill übernimmt den committeten Stand dieses Repos, Änderungen am Template also vorher committen.
+
+Von Hand:
+
 1. Verzeichnis kopieren (ohne `target/` und `.git/`), dann `git init`.
 2. In `pom.xml` `groupId`, `artifactId`, `name` und `description` anpassen.
 3. Package `com.kah.plainproject` umbenennen (in IntelliJ: *Refactor → Rename*), auch unter `src/test`.
